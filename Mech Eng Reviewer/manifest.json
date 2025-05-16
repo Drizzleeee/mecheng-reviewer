@@ -8,16 +8,17 @@
   "theme_color": "#FF6B2B",
   "icons": [
     {
-      "src": "images/NBFavicon.png",
+      "src": "/images/NBFavicon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "images/NBFavicon.png",
+      "src": "/images/NBFavicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
+

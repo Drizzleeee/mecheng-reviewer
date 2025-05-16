@@ -1,4 +1,4 @@
-const CACHE_NAME = 'me-reviewer-v1';
+const CACHE_NAME = 'me-reviewer-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -12,15 +12,38 @@ const urlsToCache = [
   '/scripts/app.js',
   '/scripts/quiz.js',
   '/images/NBFavicon.png',
-  '/images/NBGear.png'
+  '/images/NBGear.png',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', event => {
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting();
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
+        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
+  );
+});
+
+self.addEventListener('activate', event => {
+  // Claim clients immediately
+  event.waitUntil(clients.claim());
+  
+  // Clean up old caches
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
 
