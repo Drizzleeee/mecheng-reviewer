@@ -1,4 +1,4 @@
-const CACHE_NAME = 'me-reviewer-v2';
+const CACHE_NAME = 'me-reviewer-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -13,6 +13,7 @@ const urlsToCache = [
   '/scripts/quiz.js',
   '/images/NBFavicon.png',
   '/images/NBGear.png',
+  '/images/apple-touch-icon.png',
   '/manifest.json'
 ];
 
@@ -60,3 +61,4 @@ self.addEventListener('fetch', event => {
     )
   );
 });
+

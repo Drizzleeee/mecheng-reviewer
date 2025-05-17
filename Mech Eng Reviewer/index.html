@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mechanical Engineering Terminologies Reviewer</title>
     
-    <!-- Favicon and App Icons -->
+    <!-- Basic favicon -->
     <link rel="icon" href="/images/NBFavicon.png" type="image/png">
-    <link rel="shortcut icon" href="/images/NBFavicon.png" type="image/png">
     
-    <!-- iOS specific icons with absolute paths -->
-    <link rel="apple-touch-icon" href="/images/NBFavicon.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/NBFavicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/NBFavicon.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="/images/NBFavicon.png">
+    <!-- Android PWA icons -->
+    <link rel="shortcut icon" href="/images/apple-touch-icon.png" type="image/png">
     
-    <!-- iOS meta tags -->
+    <!-- iOS home screen icons - multiple sizes for different devices -->
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    
+    <!-- iOS specific settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ME Reviewer">
-    <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- Web App Manifest with cache busting -->
-    <link rel="manifest" href="/manifest.json?v=2">
+    <!-- Android specific settings -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FF6B2B">
+    
+    <!-- Web App Manifest with version parameter to prevent caching -->
+    <link rel="manifest" href="/manifest.json?v=4">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/styles/main.css">
@@ -79,9 +85,13 @@
     <footer>
         <p>&copy; 2025 Mechanical Engineering Terminologies Reviewer. All rights reserved.</p>
     </footer>
-    <script src="scripts/navigation.js"></script>
-    <script src="scripts/app.js"></script>
+    <script src="/scripts/navigation.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/icon-debug.js"></script>
 </body>
 </html>
+
+
+
 
 
