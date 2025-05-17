@@ -1,0 +1,76 @@
+/* Simple dropdown styles that will definitely work */
+.dropdown {
+    margin-bottom: 1.5rem;
+    position: relative;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #FF6B2B, #FF8F5E);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(255, 107, 43, 0.2);
+}
+
+.dropdown-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 100;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 107, 43, 0.1);
+    color: #FF6B2B;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .dropdown-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .dropdown-content a {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+}
