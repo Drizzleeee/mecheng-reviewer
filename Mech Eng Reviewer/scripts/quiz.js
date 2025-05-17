@@ -1,19 +1,14 @@
 function toggleDropdown(id) {
-    // Close all dropdowns first
-    const allDropdowns = document.querySelectorAll('.dropdown-content');
-    const allButtons = document.querySelectorAll('.dropdown-btn');
-    
-    allDropdowns.forEach(dropdown => {
-        if (dropdown.id !== `${id}-dropdown`) {
-            dropdown.classList.remove('show');
-            dropdown.style.transform = 'translateY(-10px)';
-            dropdown.style.opacity = '0';
-        }
-    });
-    
-    allButtons.forEach(button => {
-        if (!button.getAttribute('onclick').includes(id)) {
-            button.classList.remove('active');
+    // Close all other dropdowns first
+    document.querySelectorAll('.dropdown-content').forEach(content => {
+        if (content.id !== `${id}-dropdown`) {
+            content.classList.remove('show');
+            content.style.transform = '';
+            content.style.opacity = '';
+            
+            // Reset the active state of the button
+            const btn = content.previousElementSibling;
+            if (btn) btn.classList.remove('active');
         }
     });
 
@@ -26,37 +21,55 @@ function toggleDropdown(id) {
         dropdown.classList.add('show');
         dropdown.style.transform = 'translateY(0)';
         dropdown.style.opacity = '1';
+        button.classList.add('active');
         
         // Add ripple effect to button
         createRipple(event, button);
+        
+        // Add haptic feedback on mobile if supported
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate(50);
+        }
     } else {
         // Closing animation
         dropdown.style.transform = 'translateY(-10px)';
         dropdown.style.opacity = '0';
+        button.classList.remove('active');
+        
         setTimeout(() => {
             dropdown.classList.remove('show');
         }, 300);
     }
-    
-    button.classList.toggle('active');
 }
 
 // Create ripple effect
 function createRipple(event, element) {
-    const ripple = document.createElement('span');
+    const circle = document.createElement('span');
+    const diameter = Math.max(element.clientWidth, element.clientHeight);
+    const radius = diameter / 2;
+    
+    // Get position relative to the button
     const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+    const x = event.clientX - rect.left - radius;
+    const y = event.clientY - rect.top - radius;
     
-    ripple.className = 'ripple';
-    ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
+    circle.classList.add('ripple');
     
-    element.appendChild(ripple);
+    // Remove existing ripples
+    const ripple = element.querySelector('.ripple');
+    if (ripple) {
+        ripple.remove();
+    }
     
-    setTimeout(() => ripple.remove(), 600);
+    element.appendChild(circle);
+    
+    // Remove the ripple after animation completes
+    setTimeout(() => {
+        circle.remove();
+    }, 600);
 }
 
 // Add hover effect for dropdown items
@@ -105,16 +118,18 @@ document.querySelectorAll('.dropdown-btn').forEach(button => {
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', function(event) {
-    if (!event.target.matches('.dropdown-btn') && !event.target.matches('.dropdown-icon')) {
-        const dropdowns = document.querySelectorAll('.dropdown-content');
-        const buttons = document.querySelectorAll('.dropdown-btn');
-        
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('show');
-        });
-        
-        buttons.forEach(button => {
-            button.classList.remove('active');
+    if (!event.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            dropdown.style.transform = 'translateY(-10px)';
+            dropdown.style.opacity = '0';
+            
+            // Reset the active state of the button
+            const btn = dropdown.previousElementSibling;
+            if (btn) btn.classList.remove('active');
+            
+            setTimeout(() => {
+                dropdown.classList.remove('show');
+            }, 300);
         });
     }
 });
@@ -284,4 +299,87 @@ const enhanceDropdownForMobile = () => {
 };
 
 enhanceDropdownForMobile();
+
+// Enhanced dropdown handling for mobile
+function initializeDropdowns() {
+    const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+    
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-content').forEach(content => {
+                content.classList.remove('show');
+            });
+        }
+    });
+    
+    // Toggle dropdown on button click
+    dropdownBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const content = this.nextElementSibling;
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                if (dropdown !== content) {
+                    dropdown.classList.remove('show');
+                }
+            });
+            
+            // Toggle current dropdown
+            content.classList.toggle('show');
+            
+            // Scroll to make dropdown visible if needed
+            if (content.classList.contains('show')) {
+                // Ensure the dropdown is visible
+                setTimeout(() => {
+                    const rect = content.getBoundingClientRect();
+                    const isInViewport = (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= window.innerHeight &&
+                        rect.right <= window.innerWidth
+                    );
+                    
+                    if (!isInViewport) {
+                        content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+            }
+        });
+    });
+    
+    // Prevent clicks inside dropdown from closing it
+    document.querySelectorAll('.dropdown-content').forEach(content => {
+        content.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeDropdowns();
+});
+
+// Add ripple style
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+`);
 
