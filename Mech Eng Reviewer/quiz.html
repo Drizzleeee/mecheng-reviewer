@@ -53,7 +53,7 @@
                 
                 <!-- Industrial Plant Engineering -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" onclick="toggleDropdown('industrial')">
+                    <button class="dropdown-btn" type="button" onclick="event.preventDefault(); toggleDropdown('industrial');">
                         Industrial Plant Engineering
                         <span class="dropdown-icon">▼</span>
                     </button>
@@ -64,7 +64,7 @@
 
                 <!-- Power Plant -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" onclick="toggleDropdown('powerplant')">
+                    <button class="dropdown-btn" type="button" onclick="event.preventDefault(); toggleDropdown('powerplant');">
                         Power Plant with Renewable Energy
                         <span class="dropdown-icon">▼</span>
                     </button>
@@ -83,29 +83,63 @@
     <script src="scripts/navigation.js"></script>
     <script src="scripts/quiz-dropdowns.js"></script>
     <script>
-        // Immediate execution to ensure dropdown content
-        (function() {
-            // Function to ensure the industrial dropdown has content
-            function ensureDropdownContent() {
-                const industrialDropdown = document.getElementById('industrial-dropdown');
-                if (industrialDropdown && industrialDropdown.children.length === 0) {
-                    const link = document.createElement('a');
-                    link.href = 'quiz-fans-blowers.html';
-                    link.textContent = 'Fans and Blower Terms';
-                    industrialDropdown.appendChild(link);
-                    console.log('Added Fans and Blower Terms link via inline script');
-                }
-            }
+        // Fix for dropdown disappearing issue
+        document.addEventListener('DOMContentLoaded', function() {
+            // Override the click handlers for dropdown buttons
+            document.querySelectorAll('.dropdown-btn').forEach(button => {
+                // Remove the original onclick attribute
+                const id = button.getAttribute('onclick').match(/toggleDropdown\('(.+?)'\)/)[1];
+                button.removeAttribute('onclick');
+                
+                // Add a new click event listener
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const dropdownId = id;
+                    const dropdown = document.getElementById(`${dropdownId}-dropdown`);
+                    
+                    if (!dropdown) return;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-content').forEach(content => {
+                        if (content.id !== `${dropdownId}-dropdown`) {
+                            content.style.display = 'none';
+                            content.previousElementSibling.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (dropdown.style.display === 'block') {
+                        dropdown.style.display = 'none';
+                        this.classList.remove('active');
+                    } else {
+                        dropdown.style.display = 'block';
+                        this.classList.add('active');
+                        
+                        // Ensure the industrial dropdown has content
+                        if (dropdownId === 'industrial' && dropdown.children.length === 0) {
+                            const link = document.createElement('a');
+                            link.href = 'quiz-fans-blowers.html';
+                            link.textContent = 'Fans and Blower Terms';
+                            dropdown.appendChild(link);
+                        }
+                    }
+                });
+            });
             
-            // Run immediately
-            ensureDropdownContent();
-            
-            // Also run when DOM is fully loaded
-            document.addEventListener('DOMContentLoaded', ensureDropdownContent);
-        })();
+            // Prevent clicks inside dropdown content from closing it
+            document.querySelectorAll('.dropdown-content').forEach(content => {
+                content.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
     </script>
 </body>
 </html>
+
+
 
 
 
