@@ -1,32 +1,47 @@
 // Enhanced dropdown toggle function matching website UI
 function toggleDropdown(id) {
     const dropdown = document.getElementById(`${id}-dropdown`);
-    if (!dropdown) return;
+    if (!dropdown) {
+        console.error(`Dropdown with id ${id}-dropdown not found`);
+        return;
+    }
     
-    // Close all dropdowns first
+    const button = dropdown.previousElementSibling;
+    
+    // Close all other dropdowns
     document.querySelectorAll('.dropdown-content').forEach(content => {
-        if (content.id !== `${id}-dropdown`) {
+        if (content.id !== `${id}-dropdown` && content.classList.contains('show')) {
+            content.classList.remove('show');
             content.style.display = 'none';
-            content.previousElementSibling.classList.remove('active');
+            
+            // Reset the active state of other buttons
+            const otherBtn = content.previousElementSibling;
+            if (otherBtn) otherBtn.classList.remove('active');
         }
     });
-    
-    // Toggle current dropdown
-    const button = dropdown.previousElementSibling;
-    if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-        button.classList.remove('active');
-    } else {
+
+    // Toggle the clicked dropdown
+    if (dropdown.style.display !== 'block') {
+        // Opening dropdown
         dropdown.style.display = 'block';
         button.classList.add('active');
         
-        // Ensure the industrial dropdown has the Fans and Blower Terms link
-        if (id === 'industrial' && dropdown.children.length === 0) {
+        // Ensure the link is present for industrial dropdown
+        if (id === 'industrial') {
+            // Clear existing content first to avoid duplicates
+            dropdown.innerHTML = '';
+            
+            // Add the link
             const link = document.createElement('a');
             link.href = 'quiz-fans-blowers.html';
             link.textContent = 'Fans and Blower Terms';
             dropdown.appendChild(link);
+            console.log('Added Fans and Blower Terms link');
         }
+    } else {
+        // Closing dropdown
+        dropdown.style.display = 'none';
+        button.classList.remove('active');
     }
 }
 
@@ -39,16 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (industrialDropdown) {
         console.log('Found industrial dropdown');
         
-        // Make sure the link exists
-        if (industrialDropdown.children.length === 0) {
-            const link = document.createElement('a');
-            link.href = 'quiz-fans-blowers.html';
-            link.textContent = 'Fans and Blower Terms';
-            industrialDropdown.appendChild(link);
-            console.log('Added Fans and Blower Terms link');
-        } else {
-            console.log('Dropdown already has content:', industrialDropdown.children.length, 'items');
-        }
+        // Clear existing content and add the link
+        industrialDropdown.innerHTML = '';
+        const link = document.createElement('a');
+        link.href = 'quiz-fans-blowers.html';
+        link.textContent = 'Fans and Blower Terms';
+        industrialDropdown.appendChild(link);
+        console.log('Added Fans and Blower Terms link');
     } else {
         console.error('Industrial dropdown not found');
     }
@@ -56,10 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Prevent dropdown buttons from triggering document click
     document.querySelectorAll('.dropdown-btn').forEach(button => {
         button.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation(); // Stop event from bubbling up
-            const id = this.getAttribute('onclick').match(/toggleDropdown\('(.+?)'\)/)[1];
+            
+            // Extract the ID from the button
+            const id = this.textContent.trim().includes('Industrial') ? 'industrial' : 'powerplant';
             toggleDropdown(id);
-            return false; // Prevent default behavior
         });
     });
     
@@ -80,4 +94,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
