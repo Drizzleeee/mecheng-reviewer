@@ -52,13 +52,19 @@
             <div class="quiz-container">
                 <h2>Select a Topic</h2>
                 
-                <!-- Direct links instead of dropdowns -->
-                <div class="quiz-links">
-                    <a href="quiz-fans-blowers.html" class="quiz-link">
-                        Fans and Blower Terms
-                    </a>
-                    <!-- Add more direct links here as needed -->
+                <!-- Dropdown for Industrial Plant Engineering -->
+                <div class="quiz-dropdown">
+                    <button class="quiz-dropdown-btn">
+                        Industrial Plant Engineering
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="quiz-dropdown-content">
+                        <a href="quiz-fans-blowers.html">Fans and Blower Terms</a>
+                        <!-- More quizzes can be added here later -->
+                    </div>
                 </div>
+                
+                <!-- You can add more dropdowns here in the future -->
             </div>
         </section>
     </main>
@@ -71,80 +77,50 @@
     <script src="scripts/quiz-dropdowns.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get elements
-            const industrialBtn = document.getElementById('industrial-btn');
-            const industrialDropdown = document.getElementById('industrial-dropdown');
-            const powerplantBtn = document.getElementById('powerplant-btn');
-            const powerplantDropdown = document.getElementById('powerplant-dropdown');
+            // Simple dropdown toggle
+            const dropdownBtn = document.querySelector('.quiz-dropdown-btn');
+            const dropdownContent = document.querySelector('.quiz-dropdown-content');
             
-            // Make sure the industrial dropdown has the link
-            if (industrialDropdown.children.length === 0) {
-                const link = document.createElement('a');
-                link.href = 'quiz-fans-blowers.html';
-                link.textContent = 'Fans and Blower Terms';
-                industrialDropdown.appendChild(link);
-            }
-            
-            // Industrial button click handler
-            industrialBtn.addEventListener('click', function(e) {
+            // Toggle dropdown when button is clicked
+            dropdownBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Close power plant dropdown if open
-                powerplantDropdown.style.display = 'none';
-                powerplantBtn.classList.remove('active');
+                // Toggle active class on button
+                this.classList.toggle('active');
                 
-                // Toggle industrial dropdown
-                if (industrialDropdown.style.display === 'block') {
-                    industrialDropdown.style.display = 'none';
-                    industrialBtn.classList.remove('active');
+                // Toggle dropdown visibility
+                if (dropdownContent.style.maxHeight) {
+                    dropdownContent.style.maxHeight = null;
+                    setTimeout(() => {
+                        dropdownContent.style.visibility = 'hidden';
+                    }, 300); // Match transition duration
                 } else {
-                    industrialDropdown.style.display = 'block';
-                    industrialBtn.classList.add('active');
+                    dropdownContent.style.visibility = 'visible';
+                    dropdownContent.style.maxHeight = dropdownContent.scrollHeight + "px";
                 }
             });
             
-            // Power plant button click handler
-            powerplantBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Close industrial dropdown if open
-                industrialDropdown.style.display = 'none';
-                industrialBtn.classList.remove('active');
-                
-                // Toggle power plant dropdown
-                if (powerplantDropdown.style.display === 'block') {
-                    powerplantDropdown.style.display = 'none';
-                    powerplantBtn.classList.remove('active');
-                } else {
-                    powerplantDropdown.style.display = 'block';
-                    powerplantBtn.classList.add('active');
-                }
-            });
-            
-            // Close dropdowns when clicking outside
+            // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown')) {
-                    industrialDropdown.style.display = 'none';
-                    industrialBtn.classList.remove('active');
-                    powerplantDropdown.style.display = 'none';
-                    powerplantBtn.classList.remove('active');
+                if (!e.target.closest('.quiz-dropdown')) {
+                    dropdownBtn.classList.remove('active');
+                    dropdownContent.style.maxHeight = null;
+                    setTimeout(() => {
+                        dropdownContent.style.visibility = 'hidden';
+                    }, 300);
                 }
             });
             
-            // Prevent dropdown content clicks from closing the dropdown
-            industrialDropdown.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-            
-            powerplantDropdown.addEventListener('click', function(e) {
+            // Prevent clicks inside dropdown from closing it
+            dropdownContent.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         });
     </script>
 </body>
 </html>
+
 
 
 
