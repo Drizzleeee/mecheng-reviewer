@@ -1,5 +1,5 @@
 {
-  "name": "Mechanical Engineering Terminologies Reviewer",
+  "name": "ME Reviewer",
   "short_name": "ME Reviewer",
   "description": "A comprehensive guide for aspiring mechanical engineers",
   "start_url": "/index.html",
@@ -57,6 +57,7 @@
     }
   ]
 }
+
 
 
 
