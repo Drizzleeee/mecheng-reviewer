@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME Reviewer - Quiz</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="images/NBFavicon.png" type="image/png">
+    <link rel="shortcut icon" href="images/NBFavicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/NBFavicon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ME Reviewer">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="images/NBGear.png" alt="ME Reviewer Logo" class="site-logo">
+                </a>
+                <a href="index.html" style="text-decoration: none;">
+                    <h1>ME Reviewer</h1>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-button">Home</a>
+                <a href="courses.html" class="nav-button">Courses</a>
+                <a href="quiz.html" class="nav-button active">Quiz</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Test Your Knowledge</h2>
+            <p>Challenge yourself with our mechanical engineering quizzes</p>
+        </section>
+
+        <section class="quiz-content">
+            <div class="quiz-container">
+                <h2>Select a Topic</h2>
+                <!-- Industrial Plant Engineering -->
+                <div class="dropdown">
+                    <button class="dropdown-btn" onclick="toggleDropdown('industrial')">
+                        Industrial Plant Engineering
+                        <span class="dropdown-icon">▼</span>
+                    </button>
+                    <div class="dropdown-content" id="industrial-dropdown">
+                        <a href="quiz-fans-blowers.html">Fans and Blower Terms</a>
+                    </div>
+                </div>
+
+                <!-- Power Plant -->
+                <div class="dropdown">
+                    <button class="dropdown-btn" onclick="toggleDropdown('powerplant')">
+                        Power Plant with Renewable Energy
+                        <span class="dropdown-icon">▼</span>
+                    </button>
+                    <div class="dropdown-content" id="powerplant-dropdown">
+                        <!-- Content will be added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ME Reviewer. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/quiz.js"></script>
+    <script>
+        // Immediate execution to ensure dropdown content
+        (function() {
+            // Function to ensure the industrial dropdown has content
+            function ensureDropdownContent() {
+                const industrialDropdown = document.getElementById('industrial-dropdown');
+                if (industrialDropdown && industrialDropdown.children.length === 0) {
+                    const link = document.createElement('a');
+                    link.href = 'quiz-fans-blowers.html';
+                    link.textContent = 'Fans and Blower Terms';
+                    industrialDropdown.appendChild(link);
+                    console.log('Added Fans and Blower Terms link via inline script');
+                }
+            }
+            
+            // Run immediately
+            ensureDropdownContent();
+            
+            // Also run when DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', ensureDropdownContent);
+        })();
+    </script>
+</body>
+</html>
+
