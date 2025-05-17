@@ -18,6 +18,7 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/quiz-dropdowns.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,22 +54,22 @@
                 
                 <!-- Industrial Plant Engineering -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" type="button">
+                    <button id="industrial-btn" class="dropdown-btn" type="button">
                         Industrial Plant Engineering
                         <span class="dropdown-icon">▼</span>
                     </button>
-                    <div class="dropdown-content" id="industrial-dropdown">
-                        <!-- Content will be added by JavaScript -->
+                    <div id="industrial-dropdown" class="dropdown-content" style="display: none;">
+                        <a href="quiz-fans-blowers.html">Fans and Blower Terms</a>
                     </div>
                 </div>
 
                 <!-- Power Plant -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" type="button">
+                    <button id="powerplant-btn" class="dropdown-btn" type="button">
                         Power Plant with Renewable Energy
                         <span class="dropdown-icon">▼</span>
                     </button>
-                    <div class="dropdown-content" id="powerplant-dropdown">
+                    <div id="powerplant-dropdown" class="dropdown-content" style="display: none;">
                         <!-- Content will be added here -->
                     </div>
                 </div>
@@ -83,82 +84,83 @@
     <script src="scripts/navigation.js"></script>
     <script src="scripts/quiz-dropdowns.js"></script>
     <script>
-        // Direct fix for dropdown issue
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, fixing dropdowns');
-            
-            // Ensure the industrial dropdown has content
+            // Get elements
+            const industrialBtn = document.getElementById('industrial-btn');
             const industrialDropdown = document.getElementById('industrial-dropdown');
-            if (industrialDropdown) {
-                console.log('Found industrial dropdown');
-                
-                // Clear existing content and add the link
-                industrialDropdown.innerHTML = '';
+            const powerplantBtn = document.getElementById('powerplant-btn');
+            const powerplantDropdown = document.getElementById('powerplant-dropdown');
+            
+            // Make sure the industrial dropdown has the link
+            if (industrialDropdown.children.length === 0) {
                 const link = document.createElement('a');
                 link.href = 'quiz-fans-blowers.html';
                 link.textContent = 'Fans and Blower Terms';
                 industrialDropdown.appendChild(link);
-                
-                console.log('Added Fans and Blower Terms link');
-            } else {
-                console.error('Industrial dropdown not found');
             }
             
-            // Add click handlers to buttons
-            document.querySelectorAll('.dropdown-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Determine which dropdown this is
-                    const isIndustrial = this.textContent.includes('Industrial');
-                    const dropdownId = isIndustrial ? 'industrial' : 'powerplant';
-                    const dropdown = document.getElementById(`${dropdownId}-dropdown`);
-                    
-                    if (!dropdown) {
-                        console.error(`Dropdown ${dropdownId}-dropdown not found`);
-                        return;
-                    }
-                    
-                    // Close all other dropdowns
-                    document.querySelectorAll('.dropdown-content').forEach(content => {
-                        if (content.id !== dropdown.id) {
-                            content.style.display = 'none';
-                            const otherBtn = content.previousElementSibling;
-                            if (otherBtn) otherBtn.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle this dropdown
-                    if (dropdown.style.display === 'block') {
-                        dropdown.style.display = 'none';
-                        this.classList.remove('active');
-                    } else {
-                        dropdown.style.display = 'block';
-                        this.classList.add('active');
-                        
-                        // For industrial dropdown, ensure content
-                        if (isIndustrial && dropdown.children.length === 0) {
-                            const link = document.createElement('a');
-                            link.href = 'quiz-fans-blowers.html';
-                            link.textContent = 'Fans and Blower Terms';
-                            dropdown.appendChild(link);
-                            console.log('Added link via click handler');
-                        }
-                    }
-                });
+            // Industrial button click handler
+            industrialBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close power plant dropdown if open
+                powerplantDropdown.style.display = 'none';
+                powerplantBtn.classList.remove('active');
+                
+                // Toggle industrial dropdown
+                if (industrialDropdown.style.display === 'block') {
+                    industrialDropdown.style.display = 'none';
+                    industrialBtn.classList.remove('active');
+                } else {
+                    industrialDropdown.style.display = 'block';
+                    industrialBtn.classList.add('active');
+                }
             });
             
-            // Prevent clicks in dropdown from closing it
-            document.querySelectorAll('.dropdown-content').forEach(content => {
-                content.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
+            // Power plant button click handler
+            powerplantBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close industrial dropdown if open
+                industrialDropdown.style.display = 'none';
+                industrialBtn.classList.remove('active');
+                
+                // Toggle power plant dropdown
+                if (powerplantDropdown.style.display === 'block') {
+                    powerplantDropdown.style.display = 'none';
+                    powerplantBtn.classList.remove('active');
+                } else {
+                    powerplantDropdown.style.display = 'block';
+                    powerplantBtn.classList.add('active');
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    industrialDropdown.style.display = 'none';
+                    industrialBtn.classList.remove('active');
+                    powerplantDropdown.style.display = 'none';
+                    powerplantBtn.classList.remove('active');
+                }
+            });
+            
+            // Prevent dropdown content clicks from closing the dropdown
+            industrialDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            powerplantDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
         });
     </script>
 </body>
 </html>
+
+
 
 
 
