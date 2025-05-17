@@ -58,7 +58,6 @@
                     </button>
                     <div class="dropdown-content" id="industrial-dropdown">
                         <a href="quiz-fans-blowers.html">Fans and Blower Terms</a>
-                        <!-- You can add more quizzes here in the future -->
                     </div>
                 </div>
 
@@ -82,7 +81,28 @@
 
     <script src="scripts/navigation.js"></script>
     <script src="scripts/quiz.js"></script>
+    <script>
+        // Immediate execution to ensure dropdown content
+        (function() {
+            // Function to ensure the industrial dropdown has content
+            function ensureDropdownContent() {
+                const industrialDropdown = document.getElementById('industrial-dropdown');
+                if (industrialDropdown && industrialDropdown.children.length === 0) {
+                    const link = document.createElement('a');
+                    link.href = 'quiz-fans-blowers.html';
+                    link.textContent = 'Fans and Blower Terms';
+                    industrialDropdown.appendChild(link);
+                    console.log('Added Fans and Blower Terms link via inline script');
+                }
+            }
+            
+            // Run immediately
+            ensureDropdownContent();
+            
+            // Also run when DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', ensureDropdownContent);
+        })();
+    </script>
 </body>
 </html>
-
 
