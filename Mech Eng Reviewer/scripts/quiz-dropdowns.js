@@ -53,6 +53,23 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Industrial dropdown not found');
     }
     
+    // Prevent dropdown buttons from triggering document click
+    document.querySelectorAll('.dropdown-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Stop event from bubbling up
+            const id = this.getAttribute('onclick').match(/toggleDropdown\('(.+?)'\)/)[1];
+            toggleDropdown(id);
+            return false; // Prevent default behavior
+        });
+    });
+    
+    // Prevent clicks inside dropdown content from closing it
+    document.querySelectorAll('.dropdown-content').forEach(content => {
+        content.addEventListener('click', function(e) {
+            e.stopPropagation(); // Stop event from bubbling up
+        });
+    });
+    
     // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.dropdown')) {
@@ -63,3 +80,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
