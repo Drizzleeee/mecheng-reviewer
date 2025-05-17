@@ -1,3 +1,13 @@
+:root {
+    --primary-orange: #FF6B2B;
+    --secondary-orange: #FF8F5E;
+    --dark-gray: #333333;
+    --medium-gray: #666666;
+    --light-gray: #F5F5F5;
+    --white: #FFFFFF;
+    --gradient: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+}
+
 .quiz-header {
     padding: 2rem;
     text-align: center;
@@ -140,34 +150,49 @@
     }
 }
 
-/* Simplified dropdown styles for better compatibility */
+/* Enhanced Dropdown Styles matching website UI */
 .dropdown {
     margin-bottom: 1.5rem;
     position: relative;
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
+    perspective: 1000px;
 }
 
 .dropdown-btn {
     width: 100%;
-    padding: 0.8rem 1rem;
-    background: var(--primary-orange);
-    color: white;
+    padding: 1rem 1.5rem;
+    background: var(--gradient);
+    color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 107, 43, 0.2);
+}
+
+.dropdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
 }
 
 .dropdown-icon {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .dropdown-btn.active .dropdown-icon {
@@ -179,21 +204,22 @@
     top: calc(100% + 5px);
     left: 0;
     width: 100%;
-    background: white;
+    background: var(--white);
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     z-index: 100;
     display: none;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .dropdown-content a {
     display: block;
-    padding: 12px 15px;
-    color: #333;
+    padding: 1rem 1.5rem;
+    color: var(--dark-gray);
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
 }
 
 .dropdown-content a:last-child {
@@ -205,16 +231,41 @@
     color: var(--primary-orange);
 }
 
+/* Hover effect for dropdown button */
+.dropdown-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 43, 0.25);
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
     .dropdown-btn {
-        padding: 0.7rem 0.9rem;
-        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
     }
     
     .dropdown-content a {
-        padding: 15px;
-        font-size: 16px;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .dropdown-btn:hover {
+        transform: none;
+    }
+    
+    .dropdown-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .dropdown-btn:hover {
+        transform: none;
+    }
+    
+    .dropdown-btn:active {
+        background: linear-gradient(135deg, #ff5a1f, #ff8f5e);
     }
 }
 
@@ -229,6 +280,8 @@
         margin-bottom: 2rem;
     }
 }
+
+
 
 
 
