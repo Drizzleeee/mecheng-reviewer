@@ -53,18 +53,18 @@
                 
                 <!-- Industrial Plant Engineering -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" type="button" onclick="event.preventDefault(); toggleDropdown('industrial');">
+                    <button class="dropdown-btn" type="button">
                         Industrial Plant Engineering
                         <span class="dropdown-icon">▼</span>
                     </button>
                     <div class="dropdown-content" id="industrial-dropdown">
-                        <a href="quiz-fans-blowers.html">Fans and Blower Terms</a>
+                        <!-- Content will be added by JavaScript -->
                     </div>
                 </div>
 
                 <!-- Power Plant -->
                 <div class="dropdown">
-                    <button class="dropdown-btn" type="button" onclick="event.preventDefault(); toggleDropdown('powerplant');">
+                    <button class="dropdown-btn" type="button">
                         Power Plant with Renewable Energy
                         <span class="dropdown-icon">▼</span>
                     </button>
@@ -83,33 +83,53 @@
     <script src="scripts/navigation.js"></script>
     <script src="scripts/quiz-dropdowns.js"></script>
     <script>
-        // Fix for dropdown disappearing issue
+        // Direct fix for dropdown issue
         document.addEventListener('DOMContentLoaded', function() {
-            // Override the click handlers for dropdown buttons
-            document.querySelectorAll('.dropdown-btn').forEach(button => {
-                // Remove the original onclick attribute
-                const id = button.getAttribute('onclick').match(/toggleDropdown\('(.+?)'\)/)[1];
-                button.removeAttribute('onclick');
+            console.log('DOM loaded, fixing dropdowns');
+            
+            // Ensure the industrial dropdown has content
+            const industrialDropdown = document.getElementById('industrial-dropdown');
+            if (industrialDropdown) {
+                console.log('Found industrial dropdown');
                 
-                // Add a new click event listener
+                // Clear existing content and add the link
+                industrialDropdown.innerHTML = '';
+                const link = document.createElement('a');
+                link.href = 'quiz-fans-blowers.html';
+                link.textContent = 'Fans and Blower Terms';
+                industrialDropdown.appendChild(link);
+                
+                console.log('Added Fans and Blower Terms link');
+            } else {
+                console.error('Industrial dropdown not found');
+            }
+            
+            // Add click handlers to buttons
+            document.querySelectorAll('.dropdown-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    const dropdownId = id;
+                    // Determine which dropdown this is
+                    const isIndustrial = this.textContent.includes('Industrial');
+                    const dropdownId = isIndustrial ? 'industrial' : 'powerplant';
                     const dropdown = document.getElementById(`${dropdownId}-dropdown`);
                     
-                    if (!dropdown) return;
+                    if (!dropdown) {
+                        console.error(`Dropdown ${dropdownId}-dropdown not found`);
+                        return;
+                    }
                     
                     // Close all other dropdowns
                     document.querySelectorAll('.dropdown-content').forEach(content => {
-                        if (content.id !== `${dropdownId}-dropdown`) {
+                        if (content.id !== dropdown.id) {
                             content.style.display = 'none';
-                            content.previousElementSibling.classList.remove('active');
+                            const otherBtn = content.previousElementSibling;
+                            if (otherBtn) otherBtn.classList.remove('active');
                         }
                     });
                     
-                    // Toggle current dropdown
+                    // Toggle this dropdown
                     if (dropdown.style.display === 'block') {
                         dropdown.style.display = 'none';
                         this.classList.remove('active');
@@ -117,18 +137,19 @@
                         dropdown.style.display = 'block';
                         this.classList.add('active');
                         
-                        // Ensure the industrial dropdown has content
-                        if (dropdownId === 'industrial' && dropdown.children.length === 0) {
+                        // For industrial dropdown, ensure content
+                        if (isIndustrial && dropdown.children.length === 0) {
                             const link = document.createElement('a');
                             link.href = 'quiz-fans-blowers.html';
                             link.textContent = 'Fans and Blower Terms';
                             dropdown.appendChild(link);
+                            console.log('Added link via click handler');
                         }
                     }
                 });
             });
             
-            // Prevent clicks inside dropdown content from closing it
+            // Prevent clicks in dropdown from closing it
             document.querySelectorAll('.dropdown-content').forEach(content => {
                 content.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -138,6 +159,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
