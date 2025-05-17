@@ -1256,6 +1256,1169 @@ img {
     }
 }
 
+/* Enhanced Mobile Experience */
+@media (max-width: 768px) {
+    /* Improved scrolling */
+    html, body {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better touch feedback */
+    a, button {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Improved card design */
+    .subject-card {
+        position: relative;
+        background: linear-gradient(to bottom right, #fff, #f9f9f9);
+    }
+    
+    .subject-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #FF6B2B, #FF8F5E);
+        border-radius: 5px 5px 0 0;
+    }
+    
+    /* Improved typography */
+    h1, h2, h3 {
+        letter-spacing: -0.02em;
+    }
+    
+    /* Subtle animations */
+    .nav-button, .add-to-home, .subject-card {
+        will-change: transform;
+    }
+    
+    /* Improved spacing */
+    section {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Better container width */
+    .container {
+        width: 92%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* Enhanced Mobile UI - Complete Redesign */
+@media (max-width: 768px) {
+    /* Navbar improvements */
+    .navbar {
+        padding: 1rem;
+        background: linear-gradient(135deg, #FF6B2B, #FF8F5E);
+        box-shadow: 0 2px 10px rgba(255, 107, 43, 0.3);
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    .site-logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 0.5rem;
+    }
+    
+    .logo-container h1 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: white;
+        text-transform: uppercase;
+    }
+    
+    /* Improved navigation buttons */
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+    
+    .nav-button {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-align: center;
+        min-width: 80px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.2s ease;
+    }
+    
+    .nav-button.active {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+    
+    .nav-button:active {
+        transform: scale(0.95);
+    }
+    
+    /* Hero section improvements */
+    .hero {
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        background: linear-gradient(to bottom, rgba(255, 107, 43, 0.05), rgba(255, 143, 94, 0.02));
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.5;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    /* Subject cards improvements */
+    .subject-card {
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .card-content {
+        padding: 1.5rem;
+    }
+    
+    .card-content h3 {
+        color: #FF6B2B;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+    }
+    
+    .card-content p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Add to Home Screen button */
+    .add-to-home {
+        display: inline-block;
+        background: #FF6B2B;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        box-shadow: 0 3px 10px rgba(255, 107, 43, 0.3);
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+        border: none;
+    }
+    
+    .add-to-home:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 5px rgba(255, 107, 43, 0.3);
+    }
+    
+    /* Arrow icon */
+    .arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #FF6B2B;
+        color: white;
+        border-radius: 50%;
+        margin-left: 0.5rem;
+        box-shadow: 0 3px 8px rgba(255, 107, 43, 0.3);
+    }
+}
+
+/* Further refinements for smaller screens */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    
+    .nav-button {
+        min-width: 70px;
+        font-size: 0.75rem;
+        padding: 0.35rem 0.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Optimize for very small screens */
+@media (max-width: 360px) {
+    .nav-links {
+        gap: 0.3rem;
+    }
+    
+    .nav-button {
+        min-width: 65px;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .nav-button:hover {
+        transform: none;
+    }
+    
+    .nav-button:active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Enhanced Hero Section */
+.hero {
+    background: linear-gradient(rgba(255, 107, 43, 0.05), rgba(255, 143, 94, 0.05));
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-gray);
+    font-weight: 800;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--medium-gray);
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Enhanced Subject Cards */
+.subjects {
+    padding: 6rem 2rem;
+    background: radial-gradient(circle at top right, rgba(255,107,43,0.05), transparent 70%);
+}
+
+.subject-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.subject-card {
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.subject-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 107, 43, 0.15);
+}
+
+.subject-card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-content {
+    padding: 2.5rem;
+    position: relative;
+}
+
+.card-content h3 {
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.card-content p {
+    color: var(--medium-gray);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 107, 43, 0.1);
+}
+
+.subject-card:hover .arrow {
+    transform: translateX(10px);
+    background: var(--primary-orange);
+    color: var(--white);
+}
+
+/* Enhanced Footer */
+footer {
+    background: var(--dark-gray);
+    padding: 2rem;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .subject-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add hover effect for interactive elements */
+a, button {
+    transition: all 0.3s ease;
+}
+
+/* Add selection style */
+::selection {
+    background: var(--primary-orange);
+    color: var(--white);
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar {
+        padding: 1.5rem 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+        padding: 0 1rem;
+    }
+
+    /* Hero section adjustments */
+    .hero {
+        padding: 4rem 1.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+        line-height: 1.5;
+    }
+
+    /* Subject cards adjustments */
+    .subjects {
+        padding: 3rem 1rem;
+    }
+
+    .subject-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .subject-card {
+        margin: 0 0.5rem;
+        border-radius: 12px;
+    }
+
+    .card-content {
+        padding: 1.8rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 1.5rem 1rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+/* Additional mobile enhancements */
+@media (max-width: 480px) {
+    /* Extra small devices */
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .subject-card {
+        margin: 0 0.25rem;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    /* Improve touch targets */
+    .arrow {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Add smooth momentum scrolling for iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Enhanced touch feedback */
+@media (hover: none) {
+    .subject-card:active {
+        transform: scale(0.98);
+    }
+
+    .arrow:active {
+        transform: scale(0.9);
+    }
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Improve tap target sizes */
+button,
+a {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Optimize images for mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Add safe area insets support */
+@supports (padding: max(0px)) {
+    .navbar,
+    .hero,
+    .subjects,
+    footer {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
+
+/* Quiz Content Styles */
+.quiz-content {
+    padding: 4rem 2rem;
+    background: linear-gradient(rgba(255, 107, 43, 0.05), rgba(255, 143, 94, 0.05));
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quiz-container h2 {
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+/* Enhanced Dropdown Styles with mobile fixes */
+.dropdown {
+    margin-bottom: 1.5rem;
+    position: relative;
+    perspective: 1000px;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border: 2px solid var(--primary-orange);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+    max-height: 0;
+    overflow-y: auto;
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 300px; /* Increased max height */
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Mobile optimizations for dropdown */
+@media (max-width: 768px) {
+    .dropdown-btn {
+        animation: none; /* Disable floating animation on mobile */
+    }
+    
+    .dropdown-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 1000;
+    }
+    
+    .dropdown-content.show {
+        max-height: 50vh; /* Use viewport height for better mobile experience */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .dropdown-content a {
+        padding: 1.2rem;
+        font-size: 1.1rem; /* Larger text for better touch targets */
+    }
+}
+
+/* Floating effect */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.dropdown-btn {
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* Pulse effect for the dropdown icon */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.dropdown-icon {
+    animation: pulse 2s infinite;
+}
+
+.dropdown-btn.active .dropdown-icon {
+    animation: none;
+    transform: rotate(180deg);
+}
+
+/* 3D tilt effect */
+.dropdown-btn {
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-btn {
+    transform: rotateX(5deg) translateY(-2px);
+}
+
+/* Shimmer effect */
+.dropdown-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.dropdown-btn:hover::after {
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .dropdown-btn {
+        animation: none; /* Disable floating animation on mobile */
+    }
+    
+    .dropdown-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .dropdown-content a {
+        padding: 1.2rem;
+    }
+}
+
+/* Reduce motion if preferred */
+@media (prefers-reduced-motion: reduce) {
+    .dropdown-btn,
+    .dropdown-icon,
+    .dropdown-content,
+    .dropdown-content a {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Mobile-First Enhancements */
+@media (max-width: 768px) {
+    /* Improved touch targets */
+    .dropdown-btn,
+    .dropdown-content a {
+        padding: 1rem 1.5rem;
+        min-height: 44px;
+        font-size: 16px; /* Prevent auto-zoom on iOS */
+    }
+
+    /* Enhanced touch feedback */
+    .dropdown-btn:active,
+    .dropdown-content a:active {
+        background-color: rgba(255, 107, 43, 0.1);
+        transform: scale(0.98);
+    }
+
+    /* Optimize dropdown positioning */
+    .dropdown-content {
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: 0 1rem;
+        max-height: 60vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Smooth momentum scrolling */
+    .dropdown-content {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Improved scrollbar styling */
+    .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background: rgba(255, 107, 43, 0.3);
+        border-radius: 4px;
+    }
+
+    /* Enhanced mobile animations */
+    .dropdown-content {
+        transform: translateY(0);
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .dropdown-content.show {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+
+    /* Optimize for mobile gestures */
+    .dropdown {
+        touch-action: pan-y pinch-zoom;
+    }
+
+    /* Prevent text selection during touch interactions */
+    .dropdown-btn,
+    .dropdown-content a {
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Safe area insets support */
+    .dropdown-content {
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    /* Improved focus states for touch */
+    .dropdown-btn:focus,
+    .dropdown-content a:focus {
+        outline: none;
+        box-shadow: inset 0 0 0 2px rgba(255, 107, 43, 0.5);
+    }
+
+    /* Loading state indicator */
+    .dropdown-btn.loading::after {
+        content: '';
+        position: absolute;
+        right: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2px solid rgba(255, 107, 43, 0.3);
+        border-top-color: var(--primary-orange);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    /* Optimize performance during scroll */
+    .is-scrolling .dropdown-content {
+        pointer-events: none;
+    }
+
+    /* Fix for iOS momentum scroll bug */
+    .dropdown-content {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    /* Enhanced backdrop */
+    .dropdown.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 1;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+/* Animation keyframes */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .dropdown-content,
+    .dropdown-btn,
+    .dropdown-content a {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Industrial Plant Engineering Topic Cards */
+.content-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+}
+
+.definition-box {
+    background: linear-gradient(135deg, rgba(255,107,43,0.05), rgba(255,143,94,0.1));
+    border-left: 4px solid var(--primary-orange);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.definition-box h3 {
+    color: var(--dark-gray);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.definition-box p {
+    color: var(--medium-gray);
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--dark-gray);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.topics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.topic-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    padding: 1.5rem;
+    align-items: flex-start;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(255,107,43,0.15);
+    border-color: rgba(255,107,43,0.2);
+}
+
+.topic-icon {
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+    background: linear-gradient(135deg, rgba(255,107,43,0.1), rgba(255,143,94,0.2));
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.topic-content h3 {
+    color: var(--dark-gray);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.topic-content p {
+    color: var(--medium-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .definition-box {
+        padding: 1.5rem;
+    }
+    
+    .topic-card {
+        padding: 1.2rem;
+    }
+    
+    .topic-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+        margin-right: 1rem;
+    }
+    
+    .topic-content h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .topics-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .topic-card {
+        flex-direction: column;
+    }
+    
+    .topic-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Responsive title handling */
+.mobile-title {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-title {
+        display: none;
+    }
+    
+    .mobile-title {
+        display: block;
+    }
+    
+    /* Adjust navbar for better mobile layout */
+    .navbar {
+        flex-direction: column;
+    }
+    
+    /* Center the navigation links */
+    .nav-links {
+        margin-right: 0;
+        margin-top: 1rem;
+    }
+    
+    /* Add subtle animation for logo */
+    .site-logo {
+        animation: gentle-pulse 3s infinite alternate;
+    }
+    
+    @keyframes gentle-pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
+}
+
+/* Enhanced touch targets for mobile */
+@media (max-width: 768px) {
+    .nav-button {
+        padding: 0.8rem 1.2rem;
+        margin: 0 0.3rem;
+    }
+}
+
 /* Ripple effect for mobile navigation */
 .nav-button {
     position: relative;
@@ -1308,15 +2471,116 @@ img {
     }
 }
 
+/* Ripple effect for mobile navigation */
+.nav-button {
+    position: relative;
+    overflow: hidden;
+}
 
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+}
 
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
 
+/* Add a subtle gradient to the navbar for more visual appeal */
+@media (max-width: 768px) {
+    .navbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    
+    /* Add subtle shadow to navigation buttons */
+    .nav-button {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Add transition for smooth state changes */
+    .nav-button {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
 
+/* Enhanced Mobile Experience */
+@media (max-width: 768px) {
+    /* Improved scrolling */
+    html, body {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better touch feedback */
+    a, button {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Improved card design */
+    .subject-card {
+        position: relative;
+        background: linear-gradient(to bottom right, #fff, #f9f9f9);
+    }
+    
+    .subject-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #FF6B2B, #FF8F5E);
+        border-radius: 5px 5px 0 0;
+    }
+    
+    /* Improved typography */
+    h1, h2, h3 {
+        letter-spacing: -0.02em;
+    }
+    
+    /* Subtle animations */
+    .nav-button, .add-to-home, .subject-card {
+        will-change: transform;
+    }
+    
+    /* Improved spacing */
+    section {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Better container width */
+    .container {
+        width: 92%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
 
-
-
-
-
-
-
+/* Enhanced Mobile UI - Complete Redesign */
+@media (max-width: 768px) {
+    /* Navbar improvements */
+    .navbar {
+        padding: 1rem;
+        background: linear-gradient(135deg, #FF6B2B, #FF8F5E);
+        box-shadow
 
