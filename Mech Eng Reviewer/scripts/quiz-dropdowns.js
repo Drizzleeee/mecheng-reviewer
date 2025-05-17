@@ -1,4 +1,4 @@
-// Simple dropdown toggle function
+// Enhanced dropdown toggle function matching website UI
 function toggleDropdown(id) {
     const dropdown = document.getElementById(`${id}-dropdown`);
     if (!dropdown) return;
