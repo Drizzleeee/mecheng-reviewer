@@ -1775,6 +1775,59 @@ img {
         padding: 0.8rem 1.8rem;
     }
 }
+
+/* Fix for doubled header issue */
+/* Desktop/laptop layout */
+@media (min-width: 769px) {
+    /* Show desktop elements */
+    .logo-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Hide mobile elements completely */
+    .header-top, 
+    .site-title, 
+    .title-underline,
+    .navbar > h1.site-title,
+    .navbar > .title-underline {
+        display: none !important;
+    }
+    
+    /* Ensure proper layout */
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    /* Fix for duplicate ME REVIEWER text */
+    .navbar > .me-reviewer-text {
+        display: none;
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    /* Hide desktop elements completely */
+    .logo-container {
+        display: none !important;
+    }
+    
+    /* Show mobile elements */
+    .header-top, 
+    .site-title, 
+    .title-underline {
+        display: block;
+    }
+    
+    /* Ensure proper layout */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+}
     box-shadow: 0 12px 25px rgba(255,107,43,0.15);
     border-color: rgba(255,107,43,0.2);
 }
@@ -2301,6 +2354,34 @@ img {
     
     /* Add subtle shadow to navigation buttons */
     .nav-button {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Add transition for smooth state changes */
+    .nav-button {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+/* Enhanced Mobile Experience */
+@media (max-width: 768px) {
+    /* Improved scrolling */
+    html, body {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better touch feedback */
+    a, button {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Improved card design */
+    .subject-card {
+        position: relative;
+        background: linear-gradient(to bottom right, #fff, #f9f9
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
                     inset 0 1px 1px rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -3002,5 +3083,6 @@ img {
     
     .nav-button:active {
         transform: scale(0.95
+
 
 
