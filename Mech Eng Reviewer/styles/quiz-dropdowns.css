@@ -1,76 +1,181 @@
-/* Simple dropdown styles that will definitely work */
-.dropdown {
-    margin-bottom: 1.5rem;
+/* Quiz dropdown styles - adapted to match website theme */
+.quiz-dropdown {
     position: relative;
     max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 1.5rem auto;
+    perspective: 1000px;
 }
 
-.dropdown-btn {
+.quiz-dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, #FF6B2B, #FF8F5E);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: var(--white);
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 600;
+    text-align: left;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-shadow: 0 4px 15px rgba(255, 107, 43, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 
-.dropdown-icon {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
+.quiz-dropdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.dropdown-btn.active .dropdown-icon {
+.quiz-dropdown-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 43, 0.25);
+}
+
+.quiz-dropdown-btn.active {
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 15px rgba(255, 107, 43, 0.3);
+}
+
+.quiz-dropdown-btn.active .dropdown-arrow {
     transform: rotate(180deg);
 }
 
-.dropdown-content {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    width: 100%;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    z-index: 100;
-    border: 1px solid rgba(0,0,0,0.1);
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+    margin-left: 10px;
 }
 
-.dropdown-content a {
+.quiz-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    z-index: 10;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0s linear 0.3s;
+    border: 1px solid rgba(255, 107, 43, 0.1);
+    border-top: none;
+}
+
+.quiz-dropdown-content a {
     display: block;
     padding: 1rem 1.5rem;
-    color: #333;
+    color: var(--dark-gray);
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    position: relative;
 }
 
-.dropdown-content a:last-child {
+.quiz-dropdown-content a::after {
+    content: '→';
+    position: absolute;
+    right: 1.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.quiz-dropdown-content a:last-child {
     border-bottom: none;
 }
 
-.dropdown-content a:hover {
-    background-color: rgba(255, 107, 43, 0.1);
-    color: #FF6B2B;
+.quiz-dropdown-content a:hover {
+    background-color: rgba(255, 107, 43, 0.05);
+    color: var(--primary-orange);
+    padding-left: 1.8rem;
+}
+
+.quiz-dropdown-content a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
-    .dropdown-btn {
+    .quiz-dropdown-btn {
         padding: 0.8rem 1.2rem;
         font-size: 1rem;
     }
     
-    .dropdown-content a {
+    .quiz-dropdown-content a {
         padding: 0.8rem 1.2rem;
-        font-size: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .quiz-dropdown-content a:hover {
+        padding-left: 1.5rem;
+    }
+    
+    .quiz-dropdown-content a::after {
+        right: 1rem;
     }
 }
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .quiz-dropdown-btn:hover {
+        transform: none;
+    }
+    
+    .quiz-dropdown-btn:active {
+        transform: translateY(-1px);
+    }
+    
+    .quiz-dropdown-content a:hover {
+        padding-left: 1.5rem;
+    }
+}
+
+/* Keep the direct links styling for any other links */
+.quiz-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.quiz-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #FF6B2B, #FF8F5E);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 107, 43, 0.2);
+    transition: all 0.3s ease;
+}
+
+.quiz-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 43, 0.25);
+}
+
+.quiz-link:active {
+    transform: translateY(0);
+}
+
+
