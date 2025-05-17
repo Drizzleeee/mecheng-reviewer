@@ -21,7 +21,7 @@ body {
     background-color: var(--white);
 }
 
-/* Enhanced Navbar */
+/* Enhanced Navbar with consistent title across all devices */
 .navbar {
     background: var(--gradient);
     padding: 1.5rem 2rem;
@@ -50,61 +50,85 @@ body {
 }
 
 .site-logo {
-    width: 120px;  /* Increased from 80px */
-    height: 120px; /* Increased from 80px */
+    width: 90px;
+    height: 90px;
     object-fit: contain;
+    transition: all 0.3s ease;
 }
 
 .logo-container h1 {
     color: var(--white);
-    font-size: 2.4rem;
-    font-weight: 800;
+    font-size: 1.8rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    animation: fadeInDown 0.8s ease-out;
+    transition: all 0.3s ease;
 }
 
-/* Add styles for logo links */
-.logo-container a {
-    display: flex;
-    align-items: center;
-    color: var(--white);
-    text-decoration: none;
+/* Desktop and laptop styles */
+@media (min-width: 769px) {
+    .site-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-container h1 {
+        font-size: 2rem;
+    }
 }
 
-.logo-container a:hover {
-    opacity: 0.9;
-}
-
-/* Add responsive adjustments for the logo */
+/* Mobile optimizations - larger logo, smaller text */
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem;
     }
-
+    
     .logo-container {
-        gap: 0.5rem;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
     }
-
+    
     .site-logo {
-        width: 90px;  /* Increased from 60px */
-        height: 90px; /* Increased from 60px */
+        width: 160px;  /* Significantly larger logo for mobile */
+        height: 160px;
     }
-
+    
     .logo-container h1 {
-        font-size: 1.6rem;
+        font-size: 1.1rem;  /* Smaller title text */
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+    
+    .nav-links {
+        margin-top: 0.8rem;
+        justify-content: center;
+        width: 100%;
     }
 }
 
+/* Further refinements for smaller screens */
 @media (max-width: 480px) {
     .site-logo {
-        width: 70px;  /* Increased from 50px */
-        height: 70px; /* Increased from 50px */
+        width: 120px;
+        height: 120px;
     }
-
+    
     .logo-container h1 {
-        font-size: 1.4rem;
+        font-size: 1rem;
+    }
+}
+
+/* Optimize for very small screens */
+@media (max-width: 360px) {
+    .site-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-container h1 {
+        font-size: 0.9rem;
     }
 }
 
@@ -182,27 +206,74 @@ body {
 
 /* Mobile responsiveness for navigation */
 @media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-        margin-right: 1rem;
+    .navbar {
+        padding: 0.8rem;
+        flex-direction: row;
+        justify-content: space-between;
     }
-
-    .nav-button {
-        padding: 0.6rem 1rem;
+    
+    .logo-container {
+        margin-bottom: 0;
+        align-items: center;
+    }
+    
+    .site-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo-container h1 {
         font-size: 1rem;
+        margin-left: 0.5rem;
+    }
+    
+    .nav-links {
+        margin-right: 0;
+        margin-top: 0;
+        gap: 0.3rem;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-button {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        background: rgba(255, 255, 255, 0.15);
+        min-width: auto;
+        text-align: center;
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-button.active {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        animation: none;
     }
 }
 
+/* Further refinements for smaller screens */
 @media (max-width: 480px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 0.8rem;
-        width: 100%;
-    }
-
     .nav-button {
-        width: 100%;
-        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.35rem 0.5rem;
+    }
+}
+
+/* Optimize for very small screens */
+@media (max-width: 360px) {
+    .nav-links {
+        gap: 0.25rem;
+    }
+    
+    .nav-button {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.4rem;
     }
 }
 
@@ -606,7 +677,7 @@ img {
     font-weight: 700;
 }
 
-/* Enhanced Dropdown Styles */
+/* Enhanced Dropdown Styles with mobile fixes */
 .dropdown {
     margin-bottom: 1.5rem;
     position: relative;
@@ -615,135 +686,87 @@ img {
 
 .dropdown-btn {
     width: 100%;
-    padding: 1.2rem 1.8rem;
-    background: var(--gradient);
-    border: none;
-    border-radius: 12px;
-    color: var(--white);
-    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border: 2px solid var(--primary-orange);
+    border-radius: 8px;
+    font-size: 1.1rem;
     font-weight: 600;
-    text-align: left;
+    color: var(--dark-gray);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 43, 0.2);
     position: relative;
     overflow: hidden;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
+    z-index: 1;
 }
 
-.dropdown-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.dropdown-btn:hover::before {
-    opacity: 1;
-}
-
-/* Enhanced hover effect */
-.dropdown-btn:hover {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 8px 25px rgba(255, 107, 43, 0.25);
-}
-
-/* Focus state */
-.dropdown-btn.focused {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 107, 43, 0.5);
-}
-
-/* Ripple effect */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.7);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* Enhanced dropdown content */
 .dropdown-content {
-    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
     background: var(--white);
-    border-radius: 10px;
-    margin-top: 0.8rem;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    animation: slideDown 0.3s ease-out;
-    transform: translateY(-10px);
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: top center;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+    max-height: 0;
+    overflow-y: auto;
 }
 
 .dropdown-content.show {
-    display: block;
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 300px; /* Increased max height */
 }
 
-/* Enhanced dropdown items */
 .dropdown-content a {
     display: block;
-    padding: 1.2rem 1.8rem;
+    padding: 1rem 1.5rem;
     color: var(--dark-gray);
     text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    background: var(--white);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.dropdown-content a::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: var(--gradient);
-    transform: scaleY(0);
-    transition: transform 0.3s ease;
-}
-
-.dropdown-content a:hover::before {
-    transform: scaleY(1);
-}
-
-.dropdown-content a:hover {
-    background: linear-gradient(to right, rgba(255, 107, 43, 0.1), rgba(255, 143, 94, 0.1));
-    color: var(--primary-orange);
-    padding-left: 2.2rem;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+/* Mobile optimizations for dropdown */
+@media (max-width: 768px) {
+    .dropdown-btn {
+        animation: none; /* Disable floating animation on mobile */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .dropdown-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 1000;
+    }
+    
+    .dropdown-content.show {
+        max-height: 50vh; /* Use viewport height for better mobile experience */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .dropdown-content a {
+        padding: 1.2rem;
+        font-size: 1.1rem; /* Larger text for better touch targets */
     }
 }
 
@@ -1134,4 +1157,162 @@ img {
         margin-bottom: 1rem;
     }
 }
+
+/* Responsive title handling */
+.mobile-title {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-title {
+        display: none;
+    }
+    
+    .mobile-title {
+        display: block;
+    }
+    
+    /* Adjust navbar for better mobile layout */
+    .navbar {
+        flex-direction: column;
+    }
+    
+    /* Center the navigation links */
+    .nav-links {
+        margin-right: 0;
+        margin-top: 1rem;
+    }
+    
+    /* Add subtle animation for logo */
+    .site-logo {
+        animation: gentle-pulse 3s infinite alternate;
+    }
+    
+    @keyframes gentle-pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
+}
+
+/* Enhanced touch targets for mobile */
+@media (max-width: 768px) {
+    .nav-button {
+        padding: 0.8rem 1.2rem;
+        margin: 0 0.3rem;
+    }
+}
+
+/* Ripple effect for mobile navigation */
+.nav-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Add a subtle gradient to the navbar for more visual appeal */
+@media (max-width: 768px) {
+    .navbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    
+    /* Add subtle shadow to navigation buttons */
+    .nav-button {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Add transition for smooth state changes */
+    .nav-button {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+/* Ripple effect for mobile navigation */
+.nav-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Add a subtle gradient to the navbar for more visual appeal */
+@media (max-width: 768px) {
+    .navbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    
+    /* Add subtle shadow to navigation buttons */
+    .nav-button {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Add transition for smooth state changes */
+    .nav-button {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
